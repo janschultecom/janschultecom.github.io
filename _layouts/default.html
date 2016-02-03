@@ -12,7 +12,14 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+    <script type="text/javascript">
+        window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"http://janschulte.com/privacy/#Cookies","theme":"light-floating"};
+    </script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+    <!-- End Cookie Consent plugin -->
+
   </head>
 
   <body>
@@ -42,7 +49,12 @@
       <div class="container">
         <footer class="footer">
           {% include svg-icons.html %}
-        </footer>
+      	  <div class="nav">
+            		  <a href="/imprint">Impressum</a>
+      		  <a href="/disclaimer">Haftungsausschluss</a>
+      		  <a href="/privacy">Datenschutz</a>
+      	  </div>
+	     </footer>
       </div>
     </div>
 
