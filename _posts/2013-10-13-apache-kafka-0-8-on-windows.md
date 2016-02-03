@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apache Kafka 0.8 on Windows
-tags: [kafka]
+tags: [kafka, distributed, large-scale, message queue, scalability, tutorial]
 date: 2013-10-13
 ---
 [Apache Kafka](http://kafka.apache.org/ "Apache Kafka") is a scalable, distributed messaging system, which is increasingly getting popular and used by such renowned companies like LinkedIn, Tumblr, Foursquare, Spotify and Netflix [1].

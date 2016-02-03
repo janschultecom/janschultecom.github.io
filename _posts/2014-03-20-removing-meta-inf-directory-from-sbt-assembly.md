@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Removing META-INF directory from sbt assembly
-tags: [scala,sbt]
+tags: [assembly, sbt, scala]
 date: 2014-03-20
 ---
 I recently had a look into sbt assembly, since I had to create a fat .jar for my project. Unfortunately I couln't get it running, getting the following error all the time:

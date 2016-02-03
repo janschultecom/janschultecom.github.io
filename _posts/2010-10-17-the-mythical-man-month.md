@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The Mythical Man-Month
-tags: [ Agile, Business, Continuous Integration, Human, Iterative-Development, Man-month, Management, Organization, Quality, Software Engineering]
+tags: [agile, business, continuous integration, ci, human, iterative, man-month, management, organization, quality, software engineering]
 date: 2010-10-17
 ---
 Probably most of our readers have either already heard of this classical book by Frederick Brooks or even read it. However, since the goal of this blog never has been to provide up-to-date information but rather to provide a comprehensive list of important and influential literature and multimedia resources about Software Engineering in general, I want to use the time to present briefly this master-piece of SE to our readers who haven't heard about it yet.
