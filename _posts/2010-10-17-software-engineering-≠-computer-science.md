@@ -4,7 +4,7 @@ title: Software Engineering ≠ Computer Science
 tags: [computer science, human, software engineering]
 date: 2010-10-17
 ---
-Today I came across a very interesting article (via the [SE Radio](http://www.se-radio.net/ "SE Radio") podcast) at[Dr. Dobb's](http://www.ddj.com/ "Dr. Dobb's") with the title _Software Engineering ≠ Computer Science_ by [_Chuck Connell_](http://www.beautifulsoftware.com/ "Chuck Connell"). As this is a discussion topic that happens to appear over and over again, I think it's a very interesting article that I really recommend to read.
+Today I came across a very interesting article (via the [SE Radio](http://www.se-radio.net/ "SE Radio") podcast) at [Dr. Dobb's](http://www.ddj.com/ "Dr. Dobb's") with the title _Software Engineering ≠ Computer Science_ by [_Chuck Connell_](http://www.beautifulsoftware.com/ "Chuck Connell"). As this is a discussion topic that happens to appear over and over again, I think it's a very interesting article that I really recommend to read.
 
 Chuck draws the line between Software Engineering and Computer Science where the human comes into play. Thus, everything that requires human intervention (like requirements engineering, maintainability, etc.) is part of Software Engineering. On the other hand, things like algorithms, machine learning, etc. do not require human intervention and therefore belong to the field of Computer Science.
 
