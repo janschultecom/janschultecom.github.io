@@ -222,4 +222,6 @@ The consumer will open and at the end of some log messages, it will display the 
 
 [![Kafka hello world consumer](/images/apacke-kafka-0-8-on-windows/kafka_hello_world_listen.png)](/images/apacke-kafka-0-8-on-windows/kafka_hello_world_listen.png)
 
-Thats it, you are now ready to start developing for Kafka on Windows! If you like this article, please share it, thanks! [1] [https://cwiki.apache.org/confluence/display/KAFKA/Powered+By](https://cwiki.apache.org/confluence/display/KAFKA/Powered+By)
+Thats it, you are now ready to start developing for Kafka on Windows! If you like this article, please share it, thanks!
+
+[1] [https://cwiki.apache.org/confluence/display/KAFKA/Powered+By](https://cwiki.apache.org/confluence/display/KAFKA/Powered+By)
