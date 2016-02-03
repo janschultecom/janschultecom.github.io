@@ -4,7 +4,13 @@ title: Apache Kafka 0.8 on Windows
 tags: [kafka]
 date: 2013-10-13
 ---
-[Apache Kafka](http://kafka.apache.org/ "Apache Kafka") is a scalable, distributed messaging system, which is increasingly getting popular and used by such renowned companies like LinkedIn, Tumblr, Foursquare, Spotify and Netflix [1]. Setting up a Kafka development environment on a Windows machine requires some configuration, so I created this little step-by-step installation tutorial for all the people who want to save themselves from some hours work ;-) **Setting up the Shell** To run Kafka you need a Linux shell under Windows. How do you do this? With the pretty awesome [Cygwin tool](http://cygwin.com/ "Cygwin").  So I'd like to go through the Cygwin installation, for all of you who have never used this tool beforehand. You can download Cygwin from [here](http://cygwin.com/install.html "Link to cygwin download page"). Most modern PCs have a modern 64-bit processor, so if you are one of these lucky guys, download the 64 bit version, otherwise, go for the 32 bit version. Start the setup-x86_64.exe (respectively the setup-x86.exe) and click on 'Next'. As the download source choose 'Install from Internet' and click 'Next'.
+[Apache Kafka](http://kafka.apache.org/ "Apache Kafka") is a scalable, distributed messaging system, which is increasingly getting popular and used by such renowned companies like LinkedIn, Tumblr, Foursquare, Spotify and Netflix [1].
+
+Setting up a Kafka development environment on a Windows machine requires some configuration, so I created this little step-by-step installation tutorial for all the people who want to save themselves from some hours work ;-)
+
+##Setting up the Shell
+
+To run Kafka you need a Linux shell under Windows. How do you do this? With the pretty awesome [Cygwin tool](http://cygwin.com/ "Cygwin").  So I'd like to go through the Cygwin installation, for all of you who have never used this tool beforehand. You can download Cygwin from [here](http://cygwin.com/install.html "Link to cygwin download page"). Most modern PCs have a modern 64-bit processor, so if you are one of these lucky guys, download the 64 bit version, otherwise, go for the 32 bit version. Start the setup-x86_64.exe (respectively the setup-x86.exe) and click on 'Next'. As the download source choose 'Install from Internet' and click 'Next'.
 
 [![Cygwin download source](/images/apacke-kafka-0-8-on-windows/cygwin_download_source.png)](/images/apacke-kafka-0-8-on-windows/cygwin_download_source.png)
 
@@ -52,7 +58,11 @@ Now open another shell by clicking on the Cygwin icon on your desktop. It should
 
 [![Cygwin c drive](/images/apacke-kafka-0-8-on-windows/cygwin_c_drive.png)](/images/apacke-kafka-0-8-on-windows/cygwin_c_drive.png)
 
-Ok, now that you have Cygwin up and running, let's unravel the mysteries of Kafka. **Setting up Kafka** Download the latest 0.8 version of the Kafka binary from the [Kafka download page](http://kafka.apache.org/downloads.html "Kafka download page"). Note. that although the latest release marked as stable is the 0.7.2 release, the kafka guys have already switched the documentation to 0.8 and say that the 0.8 beta is already used in production. Now, extract the .tgz file. Now go to the extracted folder and extract the .tar file.
+Ok, now that you have Cygwin up and running, let's unravel the mysteries of Kafka.
+
+##Setting up Kafka
+
+Download the latest 0.8 version of the Kafka binary from the [Kafka download page](http://kafka.apache.org/downloads.html "Kafka download page"). Note. that although the latest release marked as stable is the 0.7.2 release, the kafka guys have already switched the documentation to 0.8 and say that the 0.8 beta is already used in production. Now, extract the .tgz file. Now go to the extracted folder and extract the .tar file.
 
 [![Extracted kafka folder](/images/apacke-kafka-0-8-on-windows/kafka_extracted.png)](/images/apacke-kafka-0-8-on-windows/kafka_extracted.png)
 
@@ -64,7 +74,13 @@ Oh no, we get an error '-bash: ./sbt: No such file or directory'. We are missing
 
 [![Kafka sbt update 2](/images/apacke-kafka-0-8-on-windows/kafka_sbt_update_2.png)](/images/apacke-kafka-0-8-on-windows/kafka_sbt_update_2.png)
 
-After some time, the sbt should stop with the line [success] Total time: 2 s, completed 13-Oct-2013 11:21:32 Now, execute the second step from the kafka documentation, enter 'sbt package'. Again it should finish without errors. Finally, type 'sbt assembly-package-dependency'. Doh! We get an error: [error] Not a valid command: assembly-package-dependency [error] Not a valid project ID: assembly-package-dependency [error] Expected ':' (if selecting a configuration) [error] Not a valid key: assembly-package-dependency (similar: sbt-dependency) [error] assembly-package-dependency [error] ^
+After some time, the sbt should stop with the line [success] Total time: 2 s, completed 13-Oct-2013 11:21:32 Now, execute the second step from the kafka documentation, enter 'sbt package'. Again it should finish without errors. Finally, type
+
+```sh
+sbt assembly-package-dependency
+```
+
+Doh! We get an error: [error] Not a valid command: assembly-package-dependency [error] Not a valid project ID: assembly-package-dependency [error] Expected ':' (if selecting a configuration) [error] Not a valid key: assembly-package-dependency (similar: sbt-dependency) [error] assembly-package-dependency [error] ^
 
 [![Kafka sbt dependency error](/images/apacke-kafka-0-8-on-windows/kafka_sbt_dependency_error.png)](/images/apacke-kafka-0-8-on-windows/kafka_sbt_dependency_error.png)
 
@@ -72,7 +88,35 @@ Now thats not good, we get a cryptic error message. Luckily, someone in the [wik
 
 [![Kafka sbt dependency](/images/apacke-kafka-0-8-on-windows/kafka_sbt_dependency.png)](/images/apacke-kafka-0-8-on-windows/kafka_sbt_dependency.png)
 
-Ok, so we should be ready to go! The first thing we have to do is to start the zookeeper server, which takes up the coordination among your kafka nodes. Start it with 'bin/zookeeper-server-start.sh config/zookeeper.properties'. And again, we get an error bin/kafka-run-class.sh: line 67: "C:/Program: No such file or directory Again, the great & active kafka community has a solution for us. Go to the bin folder and edit the file 'kafka-run-class.sh'. In line 67 you will find the following: $JAVA $KAFKA_OPTS $KAFKA_JMX_OPTS -cp $CLASSPATH "$@" Now change that to $JAVA $KAFKA_OPTS $KAFKA_JMX_OPTS -cp `cygpath -wp $CLASSPATH` "$@" (replace $CLASSPATH with `cygpath -wp $CLASSPATH` including the backticks). Now just before this line add the follow line JAVA="java" Now you must make sure that java is set in the PATH variable of your system environment variables. Go to the windows control panel and search for environment.
+Ok, so we should be ready to go! The first thing we have to do is to start the zookeeper server, which takes up the coordination among your kafka nodes. Start it with 'bin/zookeeper-server-start.sh config/zookeeper.properties'.
+
+And again, we get an error
+
+```sh
+bin/kafka-run-class.sh: line 67: "C:/Program: No such file or directory
+```
+
+Again, the great & active kafka community has a solution for us. Go to the bin folder and edit the file 'kafka-run-class.sh'. In line 67 you will find the following:
+
+```sh
+$JAVA $KAFKA_OPTS $KAFKA_JMX_OPTS -cp $CLASSPATH "$@"
+```
+
+Now change that to
+
+```sh
+$JAVA $KAFKA_OPTS $KAFKA_JMX_OPTS -cp `cygpath -wp $CLASSPATH` "$@"
+```
+
+(replace $CLASSPATH with `cygpath -wp $CLASSPATH` including the backticks).
+
+Now just before this line add the follow line
+
+```sh
+JAVA="java"
+```
+
+Now you must make sure that java is set in the PATH variable of your system environment variables. Go to the windows control panel and search for environment.
 
 [![Windows environment variables](/images/apacke-kafka-0-8-on-windows/windows_environment_variables.png)](/images/apacke-kafka-0-8-on-windows/windows_environment_variables.png)
 
@@ -80,11 +124,75 @@ In the System Properties dialog open the Advanced tab and click on environment v
 
 [![Windows path variable](/images/apacke-kafka-0-8-on-windows/windows_environment_variable_path.png)](/images/apacke-kafka-0-8-on-windows/windows_environment_variable_path.png)
 
-This will prevent you from errors if you have your java installed in the program files directory like i do. Now go to the kafka config directory and edit the 'server.properties' file. Change line 51 from log.dir=/tmp/kafka-logs to include double backslashes and pointing to a directory on your harddisk. E.g. log.dir=c:\\kafka_2.8.0-0.8.0-beta1\\kafka-logs If your c drive is a ssd, i recommend you to store the logs on your hdd since the logs can grow quite big. Remember to not use any spaces in the path to avoid problems and to use the double backslashes! E.g. d:\\data\\kafka-logs Do the same for line 113, in my case I changed it to kafka.csv.metrics.dir=c:\\kafka_2.8.0-0.8.0-beta1\\kafka-metrics Save the file, edit the log4j.properties file. Change line 23 from log4j.appender.kafkaAppender.File=server.log to log4j.appender.kafkaAppender.File=c:\\kafka_2.8.0-0.8.0-beta1\\logs\\server.log Do the same for line 29 and 35. Finally, do the same for the zookeeper.properties file. Change line 16 from dataDir=/tmp/zookeeper to dataDir=c:\\kafka_2.8.0-0.8.0-beta1\\dataDir <span style="line-height: 1.714285714; font-size: 1rem;">Now start again the zookeeper by entering </span> bin/zookeeper-server-start.sh config/zookeeper.properties Zookeeper should start successfully and the Windows firewall will ask you whether you want to grant it access. Confirm this by clicking on Allow. Ok, zookeeper is up and running, now let's start kafka. Open a second shell, go to the kafka folder and enter bin/kafka-server-start.sh config/server.properties Kafka up and running as well, so lets try it out! Open two more shells and switch to the kafka folder in both shells. In the first shell: Create a topic with the following line bin/kafka-create-topic.sh --zookeeper localhost:2181 --replica 1 --partition 1 --topic test This will create the topic 'test' . In the same shell,  enter bin/kafka-list-topic.sh --zookeeper localhost:2181 Somewhere in the log output, there should appear the following line, indicating that you successfully created the test topic: topic: test partition: 0 leader: 0 replicas: 0 isr: 0 Now we are going to push some messages to the queue. Start the basic producer by entering bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test Some log information will be printed and the program does not return the control. So you can now freely enter messages (like 'Hello world!').
+This will prevent you from errors if you have your java installed in the program files directory like i do.
+
+Now go to the kafka config directory and edit the 'server.properties' file. Change line 51 from
+
+```dosini
+log.dir=/tmp/kafka-logs
+```
+
+to include double backslashes and pointing to a directory on your harddisk. E.g.
+
+log.dir=c:\\kafka_2.8.0-0.8.0-beta1\\kafka-logs
+
+If your c drive is a ssd, i recommend you to store the logs on your hdd since the logs can grow quite big. Remember to not use any spaces in the path to avoid problems and to use the double backslashes! E.g. d:\\data\\kafka-logs
+
+Do the same for line 113, in my case I changed it to
+
+kafka.csv.metrics.dir=c:\\kafka_2.8.0-0.8.0-beta1\\kafka-metrics
+
+Save the file, edit the log4j.properties file. Change line 23 from
+
+log4j.appender.kafkaAppender.File=server.log
+
+to
+
+log4j.appender.kafkaAppender.File=c:\\kafka_2.8.0-0.8.0-beta1\\logs\\server.log
+
+Do the same for line 29 and 35. Finally, do the same for the zookeeper.properties file. Change line 16 from
+
+dataDir=/tmp/zookeeper
+
+to
+
+dataDir=c:\\kafka_2.8.0-0.8.0-beta1\\dataDir
+
+Now start again the zookeeper by entering
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Zookeeper should start successfully and the Windows firewall will ask you whether you want to grant it access. Confirm this by clicking on Allow.
+
+Ok, zookeeper is up and running, now let's start kafka. Open a second shell, go to the kafka folder and enter
+
+bin/kafka-server-start.sh config/server.properties
+
+Kafka up and running as well, so lets try it out! Open two more shells and switch to the kafka folder in both shells. In the first shell: Create a topic with the following line
+
+bin/kafka-create-topic.sh --zookeeper localhost:2181 --replica 1 --partition 1 --topic test
+
+This will create the topic 'test' . In the same shell,  enter
+
+bin/kafka-list-topic.sh --zookeeper localhost:2181
+
+Somewhere in the log output, there should appear the following line, indicating that you successfully created the test topic:
+
+topic: test partition: 0 leader: 0 replicas: 0 isr: 0
+
+Now we are going to push some messages to the queue. Start the basic producer by entering
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+
+Some log information will be printed and the program does not return the control. So you can now freely enter messages (like 'Hello world!').
 
 [![Kafka hello world](/images/apacke-kafka-0-8-on-windows/kafka_hello_world.png)](/images/apacke-kafka-0-8-on-windows/kafka_hello_world.png)
 
-Go to the second shell and start the consumer by entering bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning The consumer will open and at the end of some log messages, it will display the message we just entered in the producer.
+Go to the second shell and start the consumer by entering
+
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+
+The consumer will open and at the end of some log messages, it will display the message we just entered in the producer.
 
 [![Kafka hello world consumer](/images/apacke-kafka-0-8-on-windows/kafka_hello_world_listen.png)](/images/apacke-kafka-0-8-on-windows/kafka_hello_world_listen.png)
 
