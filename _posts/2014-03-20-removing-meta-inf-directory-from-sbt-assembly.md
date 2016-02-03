@@ -26,6 +26,5 @@ case PathList("META-INF", xs @ _*) =>
 However, it somehow doesn't work. It took me quite some time to figure out how to circumvent this problem, so I want to share the solution with you here:
 
 {% gist 9660937 %}
-[gist https://gist.github.com/janschultecom/9660937 /]
 
 <sup>1</sup> [Sbt assembly documentation](https://github.com/sbt/sbt-assembly#Merge Strategy "sbt assembly documentation")
