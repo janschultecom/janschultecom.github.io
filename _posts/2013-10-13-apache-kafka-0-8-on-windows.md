@@ -8,7 +8,7 @@ date: 2013-10-13
 
 Setting up a Kafka development environment on a Windows machine requires some configuration, so I created this little step-by-step installation tutorial for all the people who want to save themselves from some hours work ;-)
 
-##Setting up the Shell
+## Setting up the Shell
 
 To run Kafka you need a Linux shell under Windows. How do you do this? With the pretty awesome [Cygwin tool](http://cygwin.com/ "Cygwin").  So I'd like to go through the Cygwin installation, for all of you who have never used this tool beforehand. You can download Cygwin from [here](http://cygwin.com/install.html "Link to cygwin download page"). Most modern PCs have a modern 64-bit processor, so if you are one of these lucky guys, download the 64 bit version, otherwise, go for the 32 bit version. Start the setup-x86_64.exe (respectively the setup-x86.exe) and click on 'Next'. As the download source choose 'Install from Internet' and click 'Next'.
 
@@ -60,7 +60,7 @@ Now open another shell by clicking on the Cygwin icon on your desktop. It should
 
 Ok, now that you have Cygwin up and running, let's unravel the mysteries of Kafka.
 
-##Setting up Kafka
+## Setting up Kafka
 
 Download the latest 0.8 version of the Kafka binary from the [Kafka download page](http://kafka.apache.org/downloads.html "Kafka download page"). Note. that although the latest release marked as stable is the 0.7.2 release, the kafka guys have already switched the documentation to 0.8 and say that the 0.8 beta is already used in production. Now, extract the .tgz file. Now go to the extracted folder and extract the .tar file.
 
@@ -134,55 +134,79 @@ log.dir=/tmp/kafka-logs
 
 to include double backslashes and pointing to a directory on your harddisk. E.g.
 
+```dosini
 log.dir=c:\\kafka_2.8.0-0.8.0-beta1\\kafka-logs
+```
 
 If your c drive is a ssd, i recommend you to store the logs on your hdd since the logs can grow quite big. Remember to not use any spaces in the path to avoid problems and to use the double backslashes! E.g. d:\\data\\kafka-logs
 
 Do the same for line 113, in my case I changed it to
 
+```dosini
 kafka.csv.metrics.dir=c:\\kafka_2.8.0-0.8.0-beta1\\kafka-metrics
+```
 
 Save the file, edit the log4j.properties file. Change line 23 from
 
+```dosini
 log4j.appender.kafkaAppender.File=server.log
+```
 
 to
 
+```dosini
 log4j.appender.kafkaAppender.File=c:\\kafka_2.8.0-0.8.0-beta1\\logs\\server.log
+```
 
 Do the same for line 29 and 35. Finally, do the same for the zookeeper.properties file. Change line 16 from
 
+```dosini
 dataDir=/tmp/zookeeper
+```
 
 to
 
+```dosini
 dataDir=c:\\kafka_2.8.0-0.8.0-beta1\\dataDir
+```
 
 Now start again the zookeeper by entering
 
+```sh
 bin/zookeeper-server-start.sh config/zookeeper.properties
+```
 
 Zookeeper should start successfully and the Windows firewall will ask you whether you want to grant it access. Confirm this by clicking on Allow.
 
 Ok, zookeeper is up and running, now let's start kafka. Open a second shell, go to the kafka folder and enter
 
+```sh
 bin/kafka-server-start.sh config/server.properties
+```
 
 Kafka up and running as well, so lets try it out! Open two more shells and switch to the kafka folder in both shells. In the first shell: Create a topic with the following line
 
+```sh
 bin/kafka-create-topic.sh --zookeeper localhost:2181 --replica 1 --partition 1 --topic test
+```
 
 This will create the topic 'test' . In the same shell,  enter
 
+```sh
 bin/kafka-list-topic.sh --zookeeper localhost:2181
+```
 
 Somewhere in the log output, there should appear the following line, indicating that you successfully created the test topic:
 
+```sh
 topic: test partition: 0 leader: 0 replicas: 0 isr: 0
+```
 
 Now we are going to push some messages to the queue. Start the basic producer by entering
 
+```sh
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+```
 
 Some log information will be printed and the program does not return the control. So you can now freely enter messages (like 'Hello world!').
 
@@ -190,7 +214,9 @@ Some log information will be printed and the program does not return the control
 
 Go to the second shell and start the consumer by entering
 
+```sh
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+```
 
 The consumer will open and at the end of some log messages, it will display the message we just entered in the producer.
 
