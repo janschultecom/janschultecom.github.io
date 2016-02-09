@@ -1,11 +1,12 @@
 ##TL;DR
-Deduplicate an akka stream using the [akvokolekta](http://github.com/janschultecom/akvokolekta) akka stream additions:
+Deduplicate an akka stream using the [akvokolekta](http://github.com/janschultecom/akvokolekta) akka stream additions. 
+
+Add Sonatype snapshot repository and akvokolekta library to your build.sbt
 ```scala
-// add Sonatype snapshot repository and akvokolekta library to your build.sbt
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += Resolver.sonatypeRepo("snapshots")
 libraryDependencies += "com.janschulte" %% "akvokolekta" % "0.1.0-SNAPSHOT"
 ```
-Deduplicate the akka stream:
+Deduplicate the stream
 ```scala
 import com.janschulte.akvokolekta.StreamAdditions._
 
