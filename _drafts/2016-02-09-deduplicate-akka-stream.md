@@ -8,6 +8,7 @@ libraryDependencies += "com.janschulte" %% "akvokolekta" % "0.1.0-SNAPSHOT"
 ```
 Deduplicate the stream
 ```scala
+// import akvokolekta implicits
 import com.janschulte.akvokolekta.StreamAdditions._
 
 // scala dsl
