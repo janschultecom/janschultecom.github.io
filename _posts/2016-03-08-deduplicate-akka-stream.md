@@ -1,3 +1,9 @@
+---
+layout: post
+title: Deduplicating an akka stream
+tags: [streaming, probabilistic, memory-bounded, bloom, akka, sbt, scala]
+date: 2016-03-08
+---
 ## TL;DR
 Sometimes it's necessary to deduplicate your akka stream. Currently, akka streams currently does not yet provide a built-in functionality to filter duplicates. The small  [akvokolekta](http://github.com/janschultecom/akvokolekta) library adds this functionality<sup>1</sup> to the akka streams library.
 
