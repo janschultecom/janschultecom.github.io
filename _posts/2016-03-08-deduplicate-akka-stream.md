@@ -4,7 +4,7 @@ title: How to deduplicate an akka stream
 tags: [streaming, probabilistic, memory-bounded, bloom, akka, sbt, scala]
 date: 2016-03-08
 ---
-Sometimes it's necessary to deduplicate your akka stream. Currently, akka streams currently does not yet provide a built-in functionality to filter duplicates. The small  [akvokolekta](http://github.com/janschultecom/akvokolekta) library adds this functionality[^1] to the akka streams library.
+Sometimes it's necessary to deduplicate your akka stream. Currently, akka streams currently does not yet provide a built-in functionality to filter duplicates. The small  [akvokolekta](http://github.com/janschultecom/akvokolekta) library adds this functionality [^1] to the akka streams library.
 
 ## TL;DR
 Add Sonatype snapshot repository and akvokolekta library to your build.sbt
@@ -40,16 +40,16 @@ Deduplicating a stream requires tracking all elements as they pass through the s
 Needless to say that this approach will sooner or later run out of memory if the number of elements continues to grow.
 
 ### Algorithms
-The solution to this problem is to use sub-linear space algorithms, that is algorithms that "process the input stream using a small amount of space"[^1]. The algorithm (or data structure) for filtering duplicates out of our stream is the [**bloom filter**](https://en.wikipedia.org/w/index.php?title=Bloom_filter&oldid=704138885) . From Wikipedia: "A Bloom filter is a space-efficient probabilistic data structure [...] that is used to test whether an element is a member of a set."[^2] A simple explanation of the algorithm can be found directly on the [wikipedia page](https://en.wikipedia.org/wiki/Bloom_filter#Algorithm description), so I save myself from repeating the millionth bloom filter explanation. The thing to know is, that a bloom filter uses a bit array and a set of hash functions to track duplicates, which consumes far less memory than storing a set with all observed elements. This probabilistic data structure however comes with a trade-off: The risk of *false positives*.
+The solution to this problem is to use sub-linear space algorithms, that is algorithms that "process the input stream using a small amount of space"[^1]. The algorithm (or data structure) for filtering duplicates out of our stream is the [**bloom filter**](https://en.wikipedia.org/w/index.php?title=Bloom_filter&oldid=704138885) . From Wikipedia: "A Bloom filter is a space-efficient probabilistic data structure [...] that is used to test whether an element is a member of a set." [^2] A simple explanation of the algorithm can be found directly on the [wikipedia page](https://en.wikipedia.org/wiki/Bloom_filter#Algorithm description), so I save myself from repeating the millionth bloom filter explanation. The thing to know is, that a bloom filter uses a bit array and a set of hash functions to track duplicates, which consumes far less memory than storing a set with all observed elements. This probabilistic data structure however comes with a trade-off: The risk of *false positives*.
 
-The caveat to bloom filter is, that once an element has been added to the filter, it cannot be deleted anymore[^3]. A newer and more sophisticated approach is the Cuckoo filter, which supports deletion and is even more efficient[^3].
+The caveat to bloom filter is, that once an element has been added to the filter, it cannot be deleted anymore [^3]. A newer and more sophisticated approach is the Cuckoo filter, which supports deletion and is even more efficient [^3].
 
 ## Akvokolekta
 As akka streams (up until now) does not yet contain a built-in bloom or cuckoo filter for memory-bounded stream deduplication, I wrote a small library to add basic stream processing functionality on top of akka streams that is currently missing.
 
 Using implicit class conversion a deduplication method is added to the akka streams scala dsl (see code above). For the graph api, I have created a Deduplicator building block that can be used within the flow builder.
 
-The source code of akvokolekta can be found on [github](https://github.com/janschultecom/akvokolekta) and is published on sonatype. Akvokolekta basically is a project for me to learn more about memory-bounded, probabilistic streaming algorithms, but I am always happy about getting feedback and hearing from people actually using it. Currently, akvokolekta contains functionality for deduplication[^4], counting distinct elements and set counting operations[^5].
+The source code of akvokolekta can be found on [github](https://github.com/janschultecom/akvokolekta) and is published on sonatype. Akvokolekta basically is a project for me to learn more about memory-bounded, probabilistic streaming algorithms, but I am always happy about getting feedback and hearing from people actually using it. Currently, akvokolekta contains functionality for deduplication [^4], counting distinct elements and set counting operations [^5].
 
 
 [^1] amongst other stream algorithms
