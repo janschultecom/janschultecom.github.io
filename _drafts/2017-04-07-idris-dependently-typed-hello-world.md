@@ -16,3 +16,21 @@ main : IO ()
 main = say ( Phrase "Hello World!" )
 ```
 
+# Variant 1 - Built-in (=) type
+
+```idris
+say : (=) "Hello World!" "Hello World!" -> IO ()
+say _ = printLn "Hello World!"
+
+main : IO ()
+main = say $ Refl { x = "Hello World!" } 
+```
+
+# Variant 2 - Built-in (=) type with auto implicits
+```idris
+say : (s:String) -> { auto ok : (=) s "Hello World!"} -> IO ()
+say s = printLn s
+
+main : IO ()
+main = say "Hello World!"
+```
