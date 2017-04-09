@@ -4,7 +4,7 @@ title: Dependently-typed hello world in Idris
 tags: [idris,dependent types,functional programming,fp,dependently typed]
 date: 2017-04-07
 ---
-Inspired by the chapter on equality in [Edwin Brady's](https://edwinb.wordpress.com/) amazing book [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris) (which I highly recommend you to read), I wanted to create a [dependently-typed](https://en.wikipedia.org/w/index.php?title=Dependent_type&oldid=774017617) version of *Hello World!* in Idris. The basic idea is to have my hello world program only compile for the exact String *Hello World!* and nothing else. 
+Inspired by the chapter on equality in [Edwin Brady's](https://edwinb.wordpress.com/) amazing book [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris) (which I highly recommend you to read), I wanted to do the thought experiment of creating a [dependently-typed](https://en.wikipedia.org/w/index.php?title=Dependent_type&oldid=774017617) version of *Hello World!* in Idris. The basic idea was to have my hello world program only compile for the exact String *Hello World!* and nothing else. 
 
 So here it is: 
 ```idris
