@@ -4,14 +4,9 @@ title: Dependently-typed hello world in Idris
 tags: [idris,dependent types,functional programming,fp,dependently typed]
 date: 2017-04-07
 ---
-Lately I have been playing around with the dependently-typed general-purpose programming language [Idris](https://www.idris-lang.org/). Without going into details about dependent types, let me briefly explain what these are. As [Wikipedia](https://en.wikipedia.org/w/index.php?title=Dependent_type&oldid=774017617) states it, 
-> [...] a dependent type is a type whose definition depends on a value.
+Inspired by the chapter on equality in [Edwin Brady's](https://edwinb.wordpress.com/) amazing book [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris) (which I highly recommend you to read), I wanted to create a [dependently-typed](https://en.wikipedia.org/w/index.php?title=Dependent_type&oldid=774017617) version of *Hello World!* in Idris. The basic idea is to have my hello world program only compile for the exact String *Hello World!* and nothing else. 
 
-To give you an example: In Java you can parameterize a ```Vector<?>``` with some type like ```Integer``` to create a more specific type ```Vector<Integer>```. The compilet will complain if you pass a String into your vector. In Idris, you can go one step further and create types from values as well. E.g. you can create a ```Vector 5 Int``` to declare a Vector of type Int that has the length 5. The compiler will complain not only complain if you pass a String to it, but also if it has 4 or 6 elements. 
-
-Inspired by the chapter on equality in [Edwin Brady's](https://edwinb.wordpress.com/) amazing book [Type-Driven Development with Idris](https://www.manning.com/books/type-driven-development-with-idris) (which I highly recommend you to read), I wanted to create a dependently-typed version of Hello World! in Idris. My idea was to have it only compile for the String Hello World!. 
-
-So this is it: 
+So here it is: 
 ```idris
 data Sentence : String -> Type where
   Phrase : (s:String) -> Sentence s 
@@ -61,19 +56,30 @@ Line five and six define our actual Hello World! program in Idris. Here we defin
 main : IO ()
 main = say ( Phrase "Hello World!" )
 ```
+As described above, changing this line to another String results in a compile-time error.
 
+## Variant - Built-in (=) type
 
-## Variant 1 - Built-in (=) type
-
+An alternative approach to achieve the same result is to use the built-in (=) type of Idris. 
 ```idris
 say : (=) "Hello World!" "Hello World!" -> IO ()
 say _ = printLn "Hello World!"
 
 main : IO ()
-main = say $ Refl { x = "Hello World!" } 
+main = say ( Refl { x = "Hello World!" } )
+```
+Our say function now expects an (=) type with the String *Hello World!*
+```idris
+say : (=) "Hello World!" "Hello World!" -> IO ()
+```
+The only way to create it is by using creating a Refl with the String *Hello World!*.
+```idris
+main = say ( Refl { x = "Hello World!" } )
 ```
 
 ## Variant 2 - Built-in (=) type with auto implicits
+
+We can take this approach one step further by introducing an implicit (=) parameter into our say funcion. 
 ```idris
 say : (s:String) -> { auto ok : (=) s "Hello World!"} -> IO ()
 say s = printLn s
@@ -81,3 +87,13 @@ say s = printLn s
 main : IO ()
 main = say "Hello World!"
 ```
+Calling the function say requires a String and an implicit proof that the input String is equal to *Hello World!*.
+```idris
+say : (s:String) -> { auto ok : (=) s "Hello World!"} -> IO ()
+```
+The only way the compiler can create this proof is for the String *Hello World!*. Anything else will fail to compile.
+```idris
+main = say "Hello World!"
+```
+
+
