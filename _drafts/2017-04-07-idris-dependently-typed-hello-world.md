@@ -18,7 +18,7 @@ main : IO ()
 main = say ( Phrase "Hello World!" )
 ```
 
-Now if we are going to write any other String than "Hello World!" like "Hallo Welt!"...
+Now if we are going to change line 18 from "Hello World!" to "Hallo Welt!"...
 ```idris
 main = say ( Phrase "Hallo Welt!" )
 ```
@@ -43,7 +43,7 @@ Line two declares our only type constructor Phrase.
 ```idris
   Phrase : (s:String) -> Sentence s 
 ```
-The Phrase constructor takes a String and to create a type Sentence. Using Phrase and passing it some String is the only way to create a type Sentence.
+The Phrase constructor takes a String to create a type Sentence. Using Phrase and passing it some String is the only way to create a type Sentence.
 
 Line three defines a function that takes a type Sentence "Hello World!" and returns an I/O action. 
 ```idris
