@@ -87,13 +87,9 @@ say s = printLn s
 main : IO ()
 main = say "Hello World!"
 ```
-Calling the function say requires a String and an implicit proof that the input String is equal to *Hello World!*.
+Calling the function say requires a String and an implicit proof that the input String is equal to *Hello World!*:
 ```idris
 say : (s:String) -> { auto ok : (=) s "Hello World!"} -> IO ()
 ```
-The only way the compiler can create this proof is for the String *Hello World!*. Anything else will fail to compile.
-```idris
-main = say "Hello World!"
-```
-
+The only way the compiler can create this proof (by construcing a Refl) is for the String *Hello World!*. Anything else will fail to compile.
 
