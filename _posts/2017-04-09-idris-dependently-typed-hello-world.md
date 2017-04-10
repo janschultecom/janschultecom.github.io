@@ -51,7 +51,7 @@ say : Sentence "Hello World!" -> IO ()
 ```
 Note that we have a String value in our type declaration. 
 
-Line five and six define our actual Hello World! program in Idris. Here we define our main routine to print out Hello World!. It does that by calling the funcntion say with the Phrase "Hello World!" 
+Line five and six define our actual Hello World! program in Idris. Here we define our main routine to print out Hello World!. It does that by calling the function say with the Phrase "Hello World!" 
 ```idris
 main : IO ()
 main = say ( Phrase "Hello World!" )
@@ -76,9 +76,6 @@ The only way to create it is by using creating a Refl with the String *Hello Wor
 ```idris
 main = say ( Refl { x = "Hello World!" } )
 ```
-
-## Variant 2 - Built-in (=) type with auto implicits
-
 We can take this approach one step further by introducing an implicit (=) parameter into our say funcion. 
 ```idris
 say : (s:String) -> { auto ok : (=) s "Hello World!"} -> IO ()
