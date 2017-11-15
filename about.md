@@ -9,8 +9,8 @@ Hi there! I'm a functional & logic programming enthusiast. Currently, I work as 
 # Talks
 
 
-| Date | Venue | Location | Talk |
-|------|-------|----------|------|
+| Date       | Venue | Location | Talk |
+|------------|-------|----------|------|
 | 2017-11-20 | Lambda Meetup | Munich, GER | Refinement Types in Idris |
 | 2017-07-06 | Lambda.World | Cádiz, ESP | [Typelevel SEO with Idris]( https://slides.com/janschultecom/typelevel-seo/) |
 | 2017-07-06 | Scala Meetup | Malaga, ESP | [ADTs and Typeclasses]( http://janschulte.com/2017-07-06-ADTs-and-Typeclasses/) |
