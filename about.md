@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Hi there! I'm a functional & logic programming enthusiast. Currently, I work as a Consultant and Founder. Besides I'm organising the [Idris User Group Düsseldorf](https://www.meetup.com/de-DE/Idris-User-Group-Dusseldorf/) and [Scala User Group Düsseldorf](https://www.meetup.com/de-DE/Scala-User-Group-Dusseldorf/).
+Hi there! I'm a functional & logic programming enthusiast. Currently, I work as a Consultant and Founder. Besides I'm organising the [[Idris](https://www.meetup.com/idrisdus/)|[Scala](https://www.meetup.com/scaladus/)|[Lambda](https://www.meetup.com/lambdadus/)] user groups Düsseldorf.
 
 # Talks
 
