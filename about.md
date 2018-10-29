@@ -10,9 +10,10 @@ Hi there! I'm a functional & logic programming enthusiast. Currently, I work as 
 
 | Date       | Venue | Location | Talk |
 |------------|-------|----------|------|
-| 2018-03-22 | Lambda Meetup | Düsseldorf, GER | Black magic type witchcraft <br>[video](https://youtu.be/MLKDu6jwIQw)|
-| 2017-11-20 | Lambda Meetup | Munich, GER | Refinement Types in Idris <br>[code](https://github.com/janschultecom/2017-11-20-Lambda-Meetup-Munich)|
-| 2017-10-27 | Lambda.World | Cádiz, ESP | Typelevel SEO with Idris <br>[slides]( https://slides.com/janschultecom/typelevel-seo/) - [code]( https://github.com/janschultecom/typelevel-seo/) |
+| 2018-03-22 | [Lambda.World](http://www.lambda.world/) | Cádiz, ESP | [A strongly typed martini. Shaken, not stirred. 🍸](http://cadiz.lambda.world/schedule/#session-105) <br>[code](https://github.com/janschultecom/20181025-strongly-typed-martini)|
+| 2018-03-22 | [Lambda Dus](https://www.meetup.com/lambdadus/) | Düsseldorf, GER | [Black magic type witchcraft](https://www.meetup.com/lambdadus/events/247287024/) <br>[video](https://youtu.be/MLKDu6jwIQw) - [code](https://github.com/janschultecom/20180322-lamdadus)|
+| 2017-11-20 | [Munich Lambda](https://www.meetup.com/Munich-Lambda/) | Munich, GER | [Refinement Types in Idris](https://www.meetup.com/Munich-Lambda/events/241177016/) <br>[code](https://github.com/janschultecom/2017-11-20-Lambda-Meetup-Munich)|
+| 2017-10-27 | [Lambda.World](http://www.lambda.world/) | Cádiz, ESP | Typelevel SEO with Idris <br>[slides]( https://slides.com/janschultecom/typelevel-seo/) - [code]( https://github.com/janschultecom/typelevel-seo/) |
 | 2017-07-06 | Scala Meetup | Malaga, ESP | ADTs and Typeclasses <br> [slides]( http://janschulte.com/2017-07-06-ADTs-and-Typeclasses/) |
 | 2017-05-30 | Scala Meetup | Düsseldorf, GER | Opinionated Scala <br> [slides]( https://github.com/scaladus/opinionated-scala ) |
 | 2016-02-17 | Idris Meetup | Düsseldorf, GER | Type-calculating functions <br> [code]( https://github.com/janschultecom/idrisdus-2017-02-22 ) |
