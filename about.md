@@ -10,7 +10,7 @@ Hi there! I'm a functional & logic programming enthusiast. Currently, I work as 
 
 | Date       | Venue | Location | Talk |
 |------------|-------|----------|------|
-| 2018-03-22 | [Lambda.World](http://www.lambda.world/) | Cádiz, ESP | [A strongly typed martini. Shaken, not stirred. 🍸](http://cadiz.lambda.world/schedule/#session-105) <br>[code](https://github.com/janschultecom/20181025-strongly-typed-martini)|
+| 2018-10-25 | [Lambda.World](http://www.lambda.world/) | Cádiz, ESP | [A strongly typed martini. Shaken, not stirred. 🍸](http://cadiz.lambda.world/schedule/#session-105) <br>[code](https://github.com/janschultecom/20181025-strongly-typed-martini)|
 | 2018-03-22 | [Lambda Dus](https://www.meetup.com/lambdadus/) | Düsseldorf, GER | [Black magic type witchcraft](https://www.meetup.com/lambdadus/events/247287024/) <br>[video](https://youtu.be/MLKDu6jwIQw) - [code](https://github.com/janschultecom/20180322-lamdadus)|
 | 2017-11-20 | [Munich Lambda](https://www.meetup.com/Munich-Lambda/) | Munich, GER | [Refinement Types in Idris](https://www.meetup.com/Munich-Lambda/events/241177016/) <br>[code](https://github.com/janschultecom/2017-11-20-Lambda-Meetup-Munich)|
 | 2017-10-27 | [Lambda.World](http://www.lambda.world/) | Cádiz, ESP | Typelevel SEO with Idris <br>[slides]( https://slides.com/janschultecom/typelevel-seo/) - [code]( https://github.com/janschultecom/typelevel-seo/) |
