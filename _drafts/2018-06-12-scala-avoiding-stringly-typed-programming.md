@@ -6,10 +6,11 @@ date: 2018-06-12
 ---
 # tl;dr
 
-# intro
+# the problem
 
-# the hoax - type alias
+# solution I - type alias
 Type aliases are the simplest form to avoid stringly typed programming and basically self-explanatory. You just create an alias for a type, which you use throughout your code:
+{% scalafiddle %}
 ```scala
 type Email = String
 
@@ -20,7 +21,24 @@ val email: Email = "test@example.com"
 send(email)
 // sending email to test@example.com
 ```
+{% endscalafiddle %}
+There is a catch though, type aliases provide no guarantee whatsoever - you can still pass any other String.
+```scala
+type Email = String
 
+def send(email:Email):Unit = println(s"sending email to $email")
+
+val email: Email = "test@example.com"
+
+send(email)
+// sending email to test@example.com
+
+type Name = String
+val name: Name = "Jan"
+
+send(name)
+// sending email to Jan
+```
 
 ### Discussion
 + Easy to use
